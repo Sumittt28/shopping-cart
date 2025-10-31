@@ -1,0 +1,49 @@
+import {createContext, useContext, useReducer} from 'react'
+const CartContext = createContext();
+function cartReducer(cart, action) {
+    switch (action.type) {
+        case "ADD_ITEM":
+            return [...cart, action.payload];
+        case "INCREASE_QTY":
+            return cart.map(item =>
+                item.id === action.payload.id
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            );
+        case "DECREASE_QTY":
+            return cart.map(item =>
+                item.id === action.payload.id && item.quantity > 1
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item
+            );
+        case "REMOVE_QTY":
+            return cart.filter(item => item.id !== action.payload.id);
+        default:
+            return cart;
+    }
+}
+function CartProvider({children}) {
+    const [cart, dispatch] = useReducer(cartReducer, []);
+    const addItemToCart = (newCartItem) => {
+      dispatch({type: "ADD_ITEM", payload: newCartItem});
+    };
+    const increaseQty = (id) => {
+      dispatch({type: "INCREASE_QTY", payload: {id : id}})
+    }
+
+     const decreaseQty = (id) => {
+      dispatch({type: "DECREASE_QTY", payload: {id : id}})
+    }
+
+     const removeQty = (id) => {
+      dispatch({type: "REMOVE_QTY", payload: {id : id}})
+    }
+
+  return (
+    <CartContext.Provider value={{cart, dispatch, increaseQty, decreaseQty, removeQty}}>{children}</CartContext.Provider>
+  )
+}
+export function useCart() {
+    return useContext(CartContext);
+}
+export default CartProvider
