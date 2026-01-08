@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCart } from '../context/CartProvider'
+import { useCart } from '../Context/CartProvider'
 import styles from "./CartItem.module.css"
 import {AiOutlinePlus, AiOutlineMinus} from "react-icons/ai";
 import {ImCross} from "react-icons/im";

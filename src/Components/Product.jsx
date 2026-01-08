@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCart } from '../context/CartProvider';
+import { useCart } from '../Context/CartProvider';
 import styles from "./Product.module.css";
 import { toast } from 'react-toastify';
 

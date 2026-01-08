@@ -4,7 +4,7 @@ import Cart from './Cart'
 import styles from "./Header.module.css"
 import Container from './UI/Container'
 import { FaShoppingCart } from "react-icons/fa";
-import {useCart} from "../context/CartProvider";
+import {useCart} from "../Context/CartProvider";
 
 function Header() {
     const {cart} = useCart();

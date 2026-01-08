@@ -1,5 +1,5 @@
 import Products from "./Components/Products"
-import CartProvider from "./context/CartProvider"
+import CartProvider from "./Context/CartProvider"
 import Header from "./Components/Header"
 import { ToastContainer } from 'react-toastify';
 
